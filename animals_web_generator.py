@@ -21,20 +21,22 @@ animals_data_string = ""
 
 for animal in animals_data:
     animals_data_string += '<li class="cards__item">\n'
-    animals_data_string += f"Name: {animal['name']}</br>\n"
-    animals_data_string += f"Diet: {animal['characteristics']['diet']}</br>\n"
-    locations = "Locations: "
+    animals_data_string += f'  <div class="card__title">{animal['name']}</div>\n'
+    animals_data_string += '  <p class="card__text">\n'
+    animals_data_string += f'    <strong>Diet:</strong> {animal['characteristics']['diet']}<br/>\n'
+    locations = "    <strong>Locations:</strong> "
     if len(animal['locations']) > 1:
         for i, location in enumerate(animal['locations']):
             if i == len(animal['locations']) - 1:
                 locations += f"{location}"
             else:
                 locations += f"{location}, "
-        animals_data_string += locations + "</br>\n"
     else:
-        animals_data_string += animal['locations'][0] + "</br>\n"
-    if "type" in animal['taxonomy']:
-        animals_data_string += f"{animal['taxonomy']['type']}</br>\n"
+        locations += animal['locations'][0]
+    animals_data_string += locations + "<br/>\n"
+    if "type" in animal['characteristics']:
+        animals_data_string += f'    <strong> Type:</strong> {animal['characteristics']['type']}<br/>\n'
+    animals_data_string += "  </p>\n"
     animals_data_string += '</li>\n'
 
 
