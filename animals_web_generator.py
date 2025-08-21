@@ -18,9 +18,10 @@ def serialize_animal(animal):
     animal_obj = ''
     animal_obj += '<li class="cards__item">\n'
     animal_obj += f'  <div class="card__title">{animal["name"]}</div>\n'
-    animal_obj += '  <p class="card__text">\n'
-    animal_obj += f'    <strong>Diet:</strong> {animal["characteristics"]["diet"]}<br/>\n'
-    locations = "    <strong>Locations:</strong> "
+    animal_obj += '  <div class="card__text">\n'
+    animal_obj += '    <ul>'
+    animal_obj += f'      <li><strong>Diet:</strong> {animal["characteristics"]["diet"]}</li>\n'
+    locations = "      <li><strong>Locations:</strong> "
     if len(animal['locations']) > 1:
         for i, location in enumerate(animal['locations']):
             if i == len(animal['locations']) - 1:
@@ -29,17 +30,19 @@ def serialize_animal(animal):
                 locations += f"{location}, "
     else:
         locations += animal['locations'][0]
-    animal_obj += locations + "<br/>\n"
+    animal_obj += locations + "</li>\n"
     if "type" in animal['characteristics']:
-        animal_obj += f'    <strong> Type:</strong> {animal["characteristics"]["type"]}<br/>\n'
+        animal_obj += f'      <li><strong> Type:</strong> {animal["characteristics"]["type"]}</li>\n'
     if "distinctive_feature" in animal['characteristics']:
-        animal_obj += f'    <strong>Distinctive Feature:</strong> {animal["characteristics"]["distinctive_feature"]}<br/>\n'
+        animal_obj += f'      <li><strong>Distinctive Feature:</strong> {animal["characteristics"]["distinctive_feature"]}</li>\n'
     if "temperament" in animal['characteristics']:
-        animal_obj += f'    <strong>Temperament:</strong> {animal["characteristics"]["temperament"]}<br/>\n'
+        animal_obj += f'      <li><strong>Temperament:</strong> {animal["characteristics"]["temperament"]}</li>\n'
     if "lifespan" in animal['characteristics']:
-        animal_obj += f'    <strong>Lifespan:</strong> {animal["characteristics"]["lifespan"]}<br/>\n'
-    animal_obj += "  </p>\n"
+        animal_obj += f'      <li><strong>Lifespan:</strong> {animal["characteristics"]["lifespan"]}</li>\n'
+    animal_obj += "    </ul>\n"
+    animal_obj += "  </div>"
     animal_obj += '</li>\n'
+    animal_obj += '\n'
     return animal_obj
 
 animals_data = load_data('animals_data.json')
